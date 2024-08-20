@@ -1,5 +1,5 @@
 
-import {Container, Grid, Card, CardActionArea, Typography} from '@mui/material'
+import {Container, Grid, Card, CardContent, CardActionArea, Typography} from '@mui/material'
 // New page to display all of the user’s saved flashcard sets 
 // and allow them to review individual sets.
 
