@@ -1,6 +1,9 @@
 // allows users to study and interact with a specific set of flashcards
+import React, { useState, useEffect } from 'react';
 import { Container, Grid, Card, Box, Typography, CardActionArea, CardContent } from '@mui/material'
-import { useUser } from '@clerk/nextjs'
+import { useUser, useSearchParams } from '@clerk/nextjs'
+import { collection, doc, getDocs } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; // Ensure you have this import for your Firebase configuration
 // This component uses Clerk’s `useUser` hook for authentication, 
 // React’s `useState` for managing the flashcards state,
 // and Next.js’s `useSearchParams` to get the flashcard set ID from the URL
@@ -11,7 +14,6 @@ export default function Flashcard() {
   
     const searchParams = useSearchParams()
     const search = searchParams.get('id')
-  
     // ... (rest of the component)
     // uses a `useEffect` hook to fetch the specific flashcard set 
     // when the component mounts or when the user or search parameter changes

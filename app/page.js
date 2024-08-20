@@ -1,16 +1,22 @@
-import React from 'react'
-import { AppBar, Toolbar, Typography, Button, Box, Grid } from '@mui/material'
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, Box, Grid, Container } from '@mui/material';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import Head from 'next/head'; // Import Head from next/head
+
+// creates a navigation bar with the app title and authentication buttons. 
+// It uses Clerk’s `SignedIn` and `SignedOut` components 
+// to conditionally render login/signup buttons or the user menu. 
 
 export default function Home() {
   return (
-    <>
-      {/* creates a navigation bar with the app title and authentication buttons. 
-          It uses Clerk’s `SignedIn` and `SignedOut` components 
-          to conditionally render login/signup buttons or the user menu. */}
+    <Container maxWidth="lg">
+      <Head>
+        <title>Flashcard SaaS</title>
+      </Head>
+
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
             Flashcard SaaS
           </Typography>
           <SignedOut>
@@ -35,8 +41,7 @@ export default function Home() {
           variant="contained"
           color="primary"
           sx={{ mt: 2, mr: 2 }}
-          href="/generate"
-        >
+          href="/generate">
           Get Started
         </Button>
         <Button variant="outlined" color="primary" sx={{ mt: 2 }}>
@@ -50,7 +55,14 @@ export default function Home() {
           Features
         </Typography>
         <Grid container spacing={4}>
-          {/* Feature items */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="h6">Easy Text Input</Typography>
+            <Typography>
+              Simply input your text and let our software do the rest. Creating
+              flashcards has never been easier.
+            </Typography>
+          </Grid>
+          {/* Add more Grid items for other features */}
         </Grid>
       </Box>
 
@@ -62,7 +74,7 @@ export default function Home() {
           {/* Pricing plans */}
         </Grid>
       </Box>
-    </>
+    </Container>
   );
 }
 
