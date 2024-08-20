@@ -1,7 +1,7 @@
 // allows users to study and interact with a specific set of flashcards
 import React, { useState, useEffect } from 'react';
 import { Container, Grid, Card, Box, Typography, CardActionArea, CardContent } from '@mui/material'
-import { useUser, useSearchParams } from '@clerk/nextjs'
+import { useUser, useSearchParams } from '@clerk/clerk-react'
 import { collection, doc, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; // Ensure you have this import for your Firebase configuration
 // This component uses Clerk’s `useUser` hook for authentication, 
