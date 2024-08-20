@@ -1,3 +1,5 @@
+import {  Typography, Box, Container, CircularProgress } from '@mui/material'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 // sets up the component, initializing state variables for loading, session data, and potential errors. 
 // It also extracts the `session_id` from the URL parameters
 const ResultPage = () => {
