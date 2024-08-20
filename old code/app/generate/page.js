@@ -7,15 +7,6 @@ import {
   Button,
   Typography,
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Grid,
-  Card, 
-  CardContent,
-  CardActionArea
 } from '@mui/material'
 
 // Basic structure of our generate page with a text input area and a submit button.
@@ -25,7 +16,6 @@ export default function Generate() {
   const [flashcards, setFlashcards] = useState([])
   const [setName, setSetName] = useState('')
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [flipped, setFlipped] = useState({})
 
   // Functions to handle opening and closing the dialog
   const handleOpenDialog = () => setDialogOpen(true)
@@ -71,6 +61,7 @@ export default function Generate() {
         alert('Please enter some text to generate flashcards.')
         return
       }
+    
       try {
         // Sends a POST request to our `/api/generate` endpoint with the input text.
         const response = await fetch('/api/generate', {
@@ -91,12 +82,6 @@ export default function Generate() {
     }
   }
 
-  const handleCardClick = (id) => {
-    setFlipped((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }))
-  }
 // Creates a grid of cards, each representing a flashcard with 
 // its front and back content.
   return (
@@ -133,67 +118,29 @@ export default function Generate() {
                 {flashcards.map((flashcard, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                     <Card>
-                    <CardActionArea className="card-action" 
-                    onClick={() => {
-                      handleCardClick(index)}}
-                      >
-                    <CardContent>
-                      <Box sx={{ 
-                        /* Styling for flip animation */ 
-                        perspective:'1000px',
-                         '& > div': {
-                            transition: 'transform 0.6s',
-                            transformStyle: 'preserve-3d',
-                            position: 'relative',
-                            width: '100%',
-                            height: '200px',
-                            boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-                            transform: flipped[index]
-                            ? 'rotateY(180deg)': 'rotateY(0deg)',
-                          },
-                          '& > div > div': {
-                            position:'absolute',
-                            width: '100%',
-                            height: '100%',
-                            backfaceVisibility: 'hidden',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            padding: 2,
-                            boxSizing:'border-box',
-                          },
-                          '& > div > div:nth-of-type(2)': {
-                            transform: 'rotateY(180deg)',
-                          },
-                        }}>
-                        <div>
-                          <div>
-                            <Typography variant="h5" component="div">
-                              {flashcard.front}
-                            </Typography>
-                          </div>
-                          <div>
-                            <Typography variant="h5" component="div">
-                              {flashcard.back}
-                            </Typography>
-                          </div>
-                        </div>
-                      </Box>
-                    </CardContent>
-                  </CardActionArea>
+                        <CardContent>
+                        <Typography variant="h6">Front:</Typography>
+                        <Typography>{flashcard.front}</Typography>
+                        <Typography variant="h6" sx={{ mt: 2 }}>Back:</Typography>
+                        <Typography>{flashcard.back}</Typography>
+                        </CardContent>
                     </Card>
                     </Grid>
                 ))}
                 </Grid>
-                <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-                <Button variant="contained" color="primary" onClick={handleOpenDialog}>
-                Save Flashcards
-                </Button>
+            </Box>              
+    )}
+    {flashcards.length > 0 && (
+    <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+        <Button variant="contained" color="primary" onClick={handleOpenDialog}>
+        Save Flashcards
+        </Button>
     </Box>
-  </Box>              
-  )}
-
-  <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+    )}
+</Box>
+      
+      {/* We'll add flashcard display here (Dialog Component Here!)*/}
+        <Dialog open={dialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>Save Flashcard Set</DialogTitle>
         <DialogContent>
             <DialogContentText>
@@ -216,7 +163,6 @@ export default function Generate() {
             </Button>
         </DialogActions>
         </Dialog>
-  </Box>
     </Container>
   )
 }

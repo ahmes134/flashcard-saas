@@ -1,5 +1,5 @@
 // allows users to study and interact with a specific set of flashcards
-import {Container, Grid, Card, Box, Typography, CardActionArea, CardContent} from '@mui/material'
+
 // This component uses Clerk’s `useUser` hook for authentication, 
 // React’s `useState` for managing the flashcards state,
 // and Next.js’s `useSearchParams` to get the flashcard set ID from the URL
@@ -34,7 +34,6 @@ export default function Flashcard() {
      // handles flipping flashcards
      // toggles the flip state of a flashcard when it’s clicked
       const handleCardClick = (id) => {
-        console.log(id)
         setFlipped((prev) => ({
           ...prev,
           [id]: !prev[id],
@@ -46,8 +45,8 @@ export default function Flashcard() {
           <Grid container spacing={3} sx={{ mt: 4 }}>
             {flashcards.map((flashcard) => (
               <Grid item xs={12} sm={6} md={4} key={flashcard.id}>
-                <Card className="card">
-                  <CardActionArea className="card-action" onClick={() => {handleCardClick(flashcard.id); console.log(flashcard.id)} }>
+                <Card>
+                  <CardActionArea onClick={() => handleCardClick(flashcard.id)}>
                     <CardContent>
                       <Box sx={{ /* Styling for flip animation */ }}>
                         <div>
