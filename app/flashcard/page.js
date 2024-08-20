@@ -1,5 +1,6 @@
 // allows users to study and interact with a specific set of flashcards
 import {Container, Grid, Card, Box, Typography, CardActionArea, CardContent} from '@mui/material'
+import {useUser} from '@clerk/nextjs'
 // This component uses Clerk’s `useUser` hook for authentication, 
 // React’s `useState` for managing the flashcards state,
 // and Next.js’s `useSearchParams` to get the flashcard set ID from the URL
