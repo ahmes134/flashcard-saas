@@ -1,10 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
-import { Container, Grid, Card, CardContent, CardActionArea, Typography } from '@mui/material';
-import { useUser } from '@clerk/nextjs';
-import { useRouter } from 'next/router';
-import { doc, collection, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebaseConfig'; // Ensure your Firebase config is properly imported
+import React, { useState, useEffect } from 'react'
+import { Container, Grid, Card, CardContent, CardActionArea, Typography } from '@mui/material'
+import { useUser } from '@clerk/clerk-react' // Importing useUser from Clerk
+import { useRouter } from 'next/router'
+import { doc, collection, getDoc, setDoc } from 'firebase/firestore'
+import { db } from '../firebaseConfig'// Ensure your Firebase config is properly imported
 
 // New page to display all of the user’s saved flashcard sets 
 // and allow them to review individual sets.
@@ -14,7 +14,7 @@ import { db } from '../firebaseConfig'; // Ensure your Firebase config is proper
 // and Next.js’s `useRouter` for navigation.
 
 export default function Flashcard() {
-    const { isLoaded, isSignedIn, user } = useUser()
+    const { isLoaded, isSignedIn, user } = useUser()  
     const [flashcards, setFlashcards] = useState([])
     const router = useRouter()
   
