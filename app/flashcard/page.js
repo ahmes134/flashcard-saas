@@ -1,3 +1,4 @@
+'use client'
 // allows users to study and interact with a specific set of flashcards
 import React, { useState, useEffect } from 'react';
 import { Container, Grid, Card, Box, Typography, CardActionArea, CardContent } from '@mui/material'

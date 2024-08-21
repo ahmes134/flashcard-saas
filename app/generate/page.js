@@ -1,6 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import {useState} from 'react'
+import {useUser} from '@clerk/clerk-react'
+import {useRouter} from 'next/navigation'
+import { doc, collection, getDoc, setDoc } from 'firebase/firestore'
 import {
   Container,
   TextField,
@@ -21,11 +24,14 @@ import {
 // Basic structure of our generate page with a text input area and a submit button.
 export default function Generate() {
   // The `useState` hooks manage the state for the input text and generated flashcards.
-  const [text, setText] = useState('')
+  const {isLoaded, isSignedIn, user} = useUser()
   const [flashcards, setFlashcards] = useState([])
+  const [flipped, setFlipped] = useState([])
+  const [text, setText] = useState('')
   const [setName, setSetName] = useState('')
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [flipped, setFlipped] = useState({})
+  const router = useRouter()
+  //49:35
 
   // Functions to handle opening and closing the dialog
   const handleOpenDialog = () => setDialogOpen(true)
@@ -206,7 +212,7 @@ export default function Generate() {
             type="text"
             fullWidth
             value={setName}
-            onChange={(e) => setSetName(e.target.value)}
+            onChange={(e) => {setSetName(e.target.value), console.log(e.target.value)}}
             />
         </DialogContent>
         <DialogActions>

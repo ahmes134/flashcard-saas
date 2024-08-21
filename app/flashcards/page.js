@@ -1,4 +1,4 @@
-
+'use client'
 import React, { useState, useEffect } from 'react'
 import { Container, Grid, Card, CardContent, CardActionArea, Typography } from '@mui/material'
 import { useUser } from '@clerk/clerk-react' // Importing useUser from Clerk
