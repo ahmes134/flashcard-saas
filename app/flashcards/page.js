@@ -4,7 +4,7 @@ import { Container, Grid, Card, CardContent, CardActionArea, Typography } from '
 import { useUser } from '@clerk/clerk-react' // Importing useUser from Clerk
 import { useRouter } from 'next/router'
 import { doc, collection, getDoc, setDoc } from 'firebase/firestore'
-import { db } from '../firebaseConfig'// Ensure your Firebase config is properly imported
+import { db } from "@/firebase"// Ensure your Firebase config is properly imported
 
 // New page to display all of the user’s saved flashcard sets 
 // and allow them to review individual sets.

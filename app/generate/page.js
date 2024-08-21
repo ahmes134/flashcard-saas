@@ -3,7 +3,8 @@
 import {useState} from 'react'
 import {useUser} from '@clerk/clerk-react'
 import {useRouter} from 'next/navigation'
-import { doc, collection, getDoc, setDoc } from 'firebase/firestore'
+import { doc, collection, getDoc, setDoc, writeBatch } from 'firebase/firestore'
+import { db } from "@/firebase";
 import {
   Container,
   TextField,
@@ -73,6 +74,7 @@ export default function Generate() {
 
   const handleSubmit = async () => {
     // Implement the API call
+
     if (!text.trim()) { // Checks if the input text is empty
         alert('Please enter some text to generate flashcards.')
         return
