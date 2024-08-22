@@ -25,7 +25,27 @@ export default function Flashcard() {
         router.push(`/flashcard?id=${id}`)
     }
     // ... (rest of the component)
-  
+  return <Container maxWidth= "100vw">
+    <Grid container spacing = {3} sx={{ mt:4 
+    }}>
+      {flashcards.map((flashcard, index) => {
+        <Grid item xs={12} sm={6} md={4} key={index}>
+          <Card>
+            <CardActionArea 
+            onClick={() => {
+              handleCardClick(id)
+            }}>
+            <CardContent>
+              <Typography variant = 'h6'>{flashcard.name}</Typography>
+            </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+      })}
+  </Grid>
+  </Container>
+
+
    // retrieves the user’s document from Firestore
    // and sets the `flashcards` state with the user’s flashcard collections.
    // If the user document doesn’t exist, it creates one with an empty flashcards array.
@@ -34,6 +54,7 @@ export default function Flashcard() {
       if (!user) return
       const docRef = doc(collection(db, 'users'), user.id)
       const docSnap = await getDoc(docRef)
+
       if (docSnap.exists()) {
         const collections = docSnap.data().flashcards || []
         setFlashcards(collections)
@@ -48,7 +69,7 @@ export default function Flashcard() {
   return (
     <Container maxWidth="md">
       <Grid container spacing={3} sx={{ mt: 4 }}>
-        {flashcards.map((flashcard, index) => (
+        {flashcards.map((flashcard, index) => {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card>
               <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
@@ -60,7 +81,7 @@ export default function Flashcard() {
               </CardActionArea>
             </Card>
           </Grid>
-        ))}
+})}
       </Grid>
     </Container>
     

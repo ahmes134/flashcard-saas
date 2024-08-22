@@ -2,9 +2,10 @@
 // allows users to study and interact with a specific set of flashcards
 import React, { useState, useEffect } from 'react';
 import { Container, Grid, Card, Box, Typography, CardActionArea, CardContent } from '@mui/material'
-import { useUser, useSearchParams } from '@clerk/clerk-react'
+import { useUser } from '@clerk/clerk-react'
+import { useSearchParams } from 'next/navigation'
 import { collection, doc, getDocs } from 'firebase/firestore';
-import { db } from '../firebaseConfig'; // Ensure you have this import for your Firebase configuration
+import { db } from '@/firebase'; // Ensure you have this import for your Firebase configuration
 // This component uses Clerk’s `useUser` hook for authentication, 
 // React’s `useState` for managing the flashcards state,
 // and Next.js’s `useSearchParams` to get the flashcard set ID from the URL
@@ -38,7 +39,6 @@ export default function Flashcard() {
      // handles flipping flashcards
      // toggles the flip state of a flashcard when it’s clicked
       const handleCardClick = (id) => {
-        console.log(id)
         setFlipped((prev) => ({
           ...prev,
           [id]: !prev[id],

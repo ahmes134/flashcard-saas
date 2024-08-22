@@ -63,7 +63,10 @@ export default function Generate() {
   
       await batch.commit()
   
-      alert('Flashcards saved successfully!')
+      //alert('Flashcards saved successfully!')
+      // Navigate to the flashcard page after saving
+      router.push(`/flashcard`) //Sarah Added 
+
       handleCloseDialog()
       setSetName('')
     } catch (error) {

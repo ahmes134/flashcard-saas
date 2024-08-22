@@ -1,7 +1,9 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Grid, Container } from '@mui/material';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
-import Head from 'next/head'; // Import Head from next/head
+'use client'
+import React from 'react'
+import { AppBar, Toolbar, Typography, Button, Box, Grid, Container } from '@mui/material'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import Head from 'next/head' // Import Head from next/head
+import getStripe from './api/checkout_sessions/utils/get-stripe'
 
 // creates a navigation bar with the app title and authentication buttons. 
 // It uses Clerk’s `SignedIn` and `SignedOut` components 
@@ -48,21 +50,32 @@ export default function Home() {
           Learn More
         </Button>
       </Box>
-
-      {/* highlights the key features of the application, using a grid layout to display them */}
-      <Box sx={{ my: 6 }}>
+      <Box sx={{ my: 6, textAlign: 'center' }}>
         <Typography variant="h4" component="h2" gutterBottom>
           Features
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
-            <Typography>
-              Simply input your text and let our software do the rest. Creating
-              flashcards has never been easier.
-            </Typography>
+            <Box>
+              <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
+              <Typography>
+                Hello! Simply input your text and let our Generative AI software do the rest. Creating
+                flashcards has never been easier.
+              </Typography>
+            </Box>
           </Grid>
-          {/* Add more Grid items for other features */}
+          <Grid item xs={12} md ={4}>
+            <Box>
+              <Typography variant="h6"gutterBottom>Smart Flashcards</Typography>
+              <Typography>Our intelligent Generative AI software breaks down your prompts into concise flashcards, making it a perfect tool for efficient studying.</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box>
+              <Typography variant="h6" gutterBottom> Easily Accessible</Typography>
+              <Typography>Access your flashcards from any device, at any time. Study on the go stress-free with ease.</Typography>
+            </Box>
+          </Grid>
         </Grid>
       </Box>
 
@@ -72,6 +85,32 @@ export default function Home() {
         </Typography>
         <Grid container spacing={4} justifyContent="center">
           {/* Pricing plans */}
+          <Grid item xs={12} md={6}>
+            <Box
+            sx={{
+              p:3,
+              border: '1px solid',
+              borderRadius: 2
+            }}>
+              <Typography variant="h5">Basic</Typography>
+              <Typography variant="h6">Free</Typography>
+              <Typography>Access to basic flashcard features and limited storage.</Typography>
+              <Button variant="contained">Choose Basic</Button>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+             sx={{
+               p:3,
+               border: '1px solid',
+               borderRadius: 2
+             }}>
+              <Typography variant="h5">Pro</Typography>
+              <Typography variant="h6">$9.99 / Month</Typography>
+              <Typography>Unlimited Flashcards and Storage, with priority support.</Typography>
+              <Button variant="contained" onClick={handleSubmit}>Choose Pro</Button>
+            </Box>
+          </Grid>
         </Grid>
       </Box>
     </Container>
