@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 import { AppBar, Toolbar, Typography, Button, Box, Grid, Container } from '@mui/material'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
@@ -56,7 +57,12 @@ export default function Home() {
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Box>
+            <Box
+          sx={{
+            p:3,
+            border: '1px solid',
+            borderRadius: 2
+          }}>
               <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
               <Typography>
                 Hello! Simply input your text and let our Generative AI software do the rest. Creating
@@ -65,13 +71,22 @@ export default function Home() {
             </Box>
           </Grid>
           <Grid item xs={12} md ={4}>
-            <Box>
+            <Box sx={{
+              p:3,
+              border: '1px solid',
+              borderRadius: 2
+            }}>
               <Typography variant="h6"gutterBottom>Smart Flashcards</Typography>
               <Typography>Our intelligent Generative AI software breaks down your prompts into concise flashcards, making it a perfect tool for efficient studying.</Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Box>
+            <Box
+            sx={{
+              p:3,
+              border: '1px solid',
+              borderRadius: 2
+            }}>
               <Typography variant="h6" gutterBottom> Easily Accessible</Typography>
               <Typography>Access your flashcards from any device, at any time. Study on the go stress-free with ease.</Typography>
             </Box>
