@@ -1,3 +1,4 @@
+'use client'
 // provides a user interface for existing users 
 // to authenticate themselves
 
