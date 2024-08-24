@@ -1,4 +1,5 @@
-import {  Typography, Box, Container, CircularProgress } from '@mui/material'
+'use client'
+import { Typography, Box, Container, CircularProgress } from '@mui/material'
 import { useSearchParams} from '@clerk/nextjs'
 import { useEffect, useState } from 'react'
 
