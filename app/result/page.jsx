@@ -1,6 +1,6 @@
 'use client'
 import { Typography, Box, Container, CircularProgress } from '@mui/material'
-import { useSearchParams} from '@clerk/nextjs'
+import { useSearchParams, useRouter} from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 // sets up the component, initializing state variables for loading, session data, and potential errors. 
