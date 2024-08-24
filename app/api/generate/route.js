@@ -39,7 +39,7 @@ export async function POST(req) {
       // Process the API response
       // Parse the JSON response from the API response using `JSON.parse()`
       const flashcards = JSON.parse(completion.choices[0].message.content)
-      
+      console.log(flashcards)
       // Return the flashcards as a JSON response using `NextResponse.json()`
       return NextResponse.json(flashcards.flashcards)
 
