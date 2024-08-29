@@ -15,13 +15,14 @@ You should return in the following JSON format:
     }
   ]
 }
-`
+`;
 // POST request handler
 // creates a new OpenAI client instance 
 // and extracts the text data from the request body.
 export async function POST(req) {
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
+      dangerouslyAllowBrowser: true,
     });
     const data = await req.text()
 
@@ -34,12 +35,11 @@ export async function POST(req) {
         ],
         model: 'gpt-4o',
         response_format: { type: 'json_object' }, // ‘json_object’ to ensure we receive a JSON response
-      })
+      });
     
       // Process the API response
       // Parse the JSON response from the API response using `JSON.parse()`
       const flashcards = JSON.parse(completion.choices[0].message.content)
-      console.log(flashcards)
       // Return the flashcards as a JSON response using `NextResponse.json()`
       return NextResponse.json(flashcards.flashcards)
 
